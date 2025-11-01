@@ -14,7 +14,6 @@ import {
   Code, 
   Web, 
   Storage, 
-  Cloud, 
   Security,
   Speed
 } from '@mui/icons-material';
@@ -159,7 +158,7 @@ const TechnologySection: React.FC = () => {
                 </Typography>
                 
                 <Grid container spacing={{ xs: 2.5, md: 3 }}>
-                  {categoryTechs.map((tech, index) => (
+                  {categoryTechs.map((tech) => (
                     <Grid item xs={12} sm={6} lg={4} key={tech.name}>
                       <motion.div
                         whileHover={{ y: -5 }}

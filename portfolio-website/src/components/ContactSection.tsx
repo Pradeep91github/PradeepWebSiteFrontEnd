@@ -3,64 +3,19 @@ import {
   Box, 
   Container, 
   Typography, 
-  Grid,
+  Stack,
   Card,
   CardContent,
   TextField,
   Button,
-  Stack,
-  IconButton,
   Snackbar,
   Alert
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { 
-  Email, 
-  Phone, 
-  LocationOn, 
-  LinkedIn, 
-  GitHub,
-  Twitter,
-  Send,
-  Download
-} from '@mui/icons-material';
+import { Send } from '@mui/icons-material';
 
-interface ContactInfo {
-  icon: React.ReactNode;
-  title: string;
-  value: string;
-  link?: string;
-  color: string;
-}
 
-const contactInfo: ContactInfo[] = [
-  {
-    icon: <Email />,
-    title: 'Email',
-    value: 'pradeep.chaudhary100791@gmail.com',
-    link: 'mailto:pradeep.chaudhary100791@gmail.com',
-    color: '#64ffda'
-  },
-  {
-    icon: <Phone />,
-    title: 'Phone',
-    value: '+91 9958990503',
-    link: 'tel:+919958990503',
-    color: '#ff6b6b'
-  },
-  {
-    icon: <LocationOn />,
-    title: 'Location',
-    value: 'Ghaziabad, India',
-    color: '#4fc3f7'
-  }
-];
 
-const socialLinks = [
-  { icon: <LinkedIn />, url: 'https://linkedin.com/in/pradeepkumar', label: 'LinkedIn' },
-  { icon: <GitHub />, url: 'https://github.com/pradeepkumar', label: 'GitHub' },
-  { icon: <Twitter />, url: 'https://twitter.com/pradeepkumar', label: 'Twitter' },
-];
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -236,10 +191,13 @@ const ContactSection: React.FC = () => {
                 </Box>
                 
                 <Box component="form" onSubmit={handleSubmit}>
-                  <Grid container spacing={{ xs: 4, md: 5 }}>
+                  <Stack spacing={{ xs: 4, md: 5 }}>
                     {/* Row 1: Name, Email, Subject */}
-                    <Grid item xs={12} md={4}>
-                      <Box sx={{ position: 'relative' }}>
+                    <Stack 
+                      direction={{ xs: 'column', md: 'row' }} 
+                      spacing={{ xs: 4, md: 5 }}
+                    >
+                      <Box sx={{ flex: 1 }}>
                         <TextField
                           fullWidth
                           label="Full Name"
@@ -285,9 +243,7 @@ const ContactSection: React.FC = () => {
                           }}
                         />
                       </Box>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <Box sx={{ position: 'relative' }}>
+                      <Box sx={{ flex: 1 }}>
                         <TextField
                           fullWidth
                           label="Email Address"
@@ -334,9 +290,7 @@ const ContactSection: React.FC = () => {
                           }}
                         />
                       </Box>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <Box sx={{ position: 'relative' }}>
+                      <Box sx={{ flex: 1 }}>
                         <TextField
                           fullWidth
                           label="Subject"
@@ -382,65 +336,63 @@ const ContactSection: React.FC = () => {
                           }}
                         />
                       </Box>
-                    </Grid>
+                    </Stack>
                     
                     {/* Row 2: Message (Full width aligned with fields above) */}
-                    <Grid item xs={12}>
-                      <Box sx={{ position: 'relative' }}>
-                        <TextField
-                          fullWidth
-                          label="Your Message"
-                          name="message"
-                          multiline
-                          rows={4}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          required
-                          variant="outlined"
-                          placeholder="Tell me about your project, goals, timeline, and any specific requirements..."
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 3,
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              backdropFilter: 'blur(10px)',
-                              transition: 'all 0.3s ease',
+                    <Box>
+                      <TextField
+                        fullWidth
+                        label="Your Message"
+                        name="message"
+                        multiline
+                        rows={4}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        variant="outlined"
+                        placeholder="Tell me about your project, goals, timeline, and any specific requirements..."
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            borderRadius: 3,
+                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                            backdropFilter: 'blur(10px)',
+                            transition: 'all 0.3s ease',
+                            '& fieldset': {
+                              borderColor: 'rgba(100, 255, 218, 0.2)',
+                              borderWidth: 1.5,
+                            },
+                            '&:hover': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.08)',
                               '& fieldset': {
-                                borderColor: 'rgba(100, 255, 218, 0.2)',
-                                borderWidth: 1.5,
-                              },
-                              '&:hover': {
-                                backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                                '& fieldset': {
-                                  borderColor: 'rgba(100, 255, 218, 0.4)',
-                                },
-                              },
-                              '&.Mui-focused': {
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                                '& fieldset': {
-                                  borderColor: '#64ffda',
-                                  borderWidth: 2,
-                                  boxShadow: '0 0 0 3px rgba(100, 255, 218, 0.1)',
-                                },
+                                borderColor: 'rgba(100, 255, 218, 0.4)',
                               },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: 'rgba(255, 255, 255, 0.7)',
-                              '&.Mui-focused': {
-                                color: '#64ffda',
+                            '&.Mui-focused': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                              '& fieldset': {
+                                borderColor: '#64ffda',
+                                borderWidth: 2,
+                                boxShadow: '0 0 0 3px rgba(100, 255, 218, 0.1)',
                               },
                             },
-                            '& .MuiOutlinedInput-input': {
-                              color: 'white',
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: 'rgba(255, 255, 255, 0.7)',
+                            '&.Mui-focused': {
+                              color: '#64ffda',
                             },
-                            '& .MuiInputBase-input::placeholder': {
-                              color: 'rgba(255, 255, 255, 0.5)',
-                              opacity: 1,
-                            },
-                          }}
-                        />
-                      </Box>
-                    </Grid>
-                  </Grid>
+                          },
+                          '& .MuiOutlinedInput-input': {
+                            color: 'white',
+                          },
+                          '& .MuiInputBase-input::placeholder': {
+                            color: 'rgba(255, 255, 255, 0.5)',
+                            opacity: 1,
+                          },
+                        }}
+                      />
+                    </Box>
+                  </Stack>
                   
                   {/* Submit Button - Centered at Bottom */}
                   <Box sx={{ textAlign: 'center', mt: 6 }}>
