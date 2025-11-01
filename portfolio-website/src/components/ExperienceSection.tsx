@@ -150,7 +150,7 @@ const ExperienceSection: React.FC = () => {
     }
   };
 
-  const getTimelineColor = (type: string) => {
+  const getTimelineColor = (type: string): 'primary' | 'secondary' | 'success' => {
     switch (type) {
       case 'work':
         return 'primary';
@@ -243,7 +243,7 @@ const ExperienceSection: React.FC = () => {
             <TimelineItem key={exp.id}>
               <TimelineSeparator>
                 <TimelineDot 
-                  color={getTimelineColor(exp.type) as any}
+                  color={getTimelineColor(exp.type)}
                   sx={{ 
                     p: 2,
                     backgroundColor: exp.type === 'work' ? 'primary.main' : 
